@@ -6,22 +6,19 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "bcryptjs": "^2.3.0",
-    "body-parser": "^1.15.2",
-    "client-sessions": "~0.7.0",
+    "bcrypt-nodejs" : "latest",
+    "body-parser": "~1.15.1",
+    "connect-flash" : "~0.1.1",
     "cookie-parser": "~1.4.3",
-    "cors": "^2.8.1",
     "debug": "~2.2.0",
-    "dotenv": "^2.0.0",
     "ejs": "~2.4.1",
-    "express": "^4.13.4",
-    "gravatar": "^1.5.2",
-    "jsonwebtoken": "^7.1.9",
-    "lodash": "^4.15.0",
-    "mongoose": "^4.6.0",
-    "morgan": "^1.7.0",
-    "nodemailer": "^2.5.0",
-    "nodemailer-smtp-transport": "^2.6.0",
+    "express": "~4.13.4",
+    "express-session": "latest",
+    "method-override": "latest",
+    "mongoose" : "latest",
+    "morgan": "~1.7.0",
+    "passport" : "latest",         
+    "passport-local" : "latest",
     "serve-favicon": "~2.3.0"
   }
 }
