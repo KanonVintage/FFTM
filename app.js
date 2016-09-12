@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // required for passport
 app.use(session({
-  secret: 'MY-SESSION-DEMO',
+  secret: 'T14g0',
   resave: true,
   saveUninitialized: false,
 }));
