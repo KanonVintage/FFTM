@@ -41,6 +41,18 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
     }));*/
 
+
+    // =====================================
+    // PROFILE ==============================
+    // =====================================
+    // show the user profile
+    app.get('/profile', isLoggedIn, function(req, res) {
+        console.log("shit");
+        res.render('profile.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
     // =====================================
     // SIGNUP ==============================
     // =====================================
@@ -89,6 +101,19 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+
+    var User = require('../models/user.js');
+
+    app.get('/users', function(req, res, next){ 
+        User.find(function(err, users){
+            if(err){
+                return next(err);
+            } else {
+                res.json(users);    
+            }
+        });
+    });
+
 };
 
 // route middleware to make sure a user is logged in
