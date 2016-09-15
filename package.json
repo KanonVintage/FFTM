@@ -14,10 +14,10 @@
     "ejs": "~2.4.1",
     "express": "~4.13.4",
     "express-session": "latest",
-    "jwt-simple": "^0.5.0",
     "method-override": "latest",
     "mongoose": "latest",
     "morgan": "~1.7.0",
+    "nodemailer": "latest",
     "passport": "latest",
     "passport-local": "latest",
     "serve-favicon": "~2.3.0"

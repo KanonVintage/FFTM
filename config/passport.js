@@ -2,9 +2,10 @@
 
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
-
 // load up the user model
 var User            = require('../models/user');
+// send a random passcode to user's mail
+var nodemailer      = require('nodemailer');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -58,6 +59,7 @@ module.exports = function(passport) {
                 // if there is no user with that email
                 // create the user
                 var newUser            = new User();
+                var password           = Math.random().toString(36).slice(-8);//genera cadena aleatoria
 
                 // set the user's local credentials
                 newUser.local.email    = email;
@@ -68,11 +70,30 @@ module.exports = function(passport) {
                 newUser.info.ci        = req.body.ci;
                 newUser.info.address   = req.body.address;
                 newUser.info.phone     = req.body.phone;
+
+                var transporter = nodemailer.createTransport('smtps://saludprimero1pm%40gmail.com:radwimps4@smtp.gmail.com');
+                
+                var mensaje  = "Ud ha sido agregado como paciente, su usuario es su correo y su clave temporal es: " + password;
+                var mailOptions = {
+                    from: "Admin <saludprimero.2016@gmail.com>",
+                    to: email,
+                    subject: "Bienvenida",
+                    text: mensaje
+                };
+
                 // save the user
                 newUser.save(function(err) {
                     if (err)
                         throw err;
-                    return done(null, newUser);
+                    else{
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if(error){
+                                return console.log(error);
+                            }
+                            console.log('Message sent: ' + info.response);
+                            return done(null); //done(null, newUser);
+                        });
+                    }
                 });
             }
 

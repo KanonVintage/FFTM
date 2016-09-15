@@ -12,7 +12,7 @@ var flash    = require('connect-flash');
 var session      = require('express-session');
 
 var configDB = require('./config/database.js');
-var routes = require('./routes/index');
+var routes = require('./routes/buildings');
 var users = require('./routes/users');
 
 var app = express();
@@ -39,15 +39,16 @@ app.use(session({
   secret: 'T14g0',
   resave: true,
   saveUninitialized: false,
+  cookie  : { maxAge  : (60 * 1000 * 5)}
 }));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
-require('./routes/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-app.use('/', routes);
-app.use('/users', users);
+require('./routes/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport;
+require('./routes/buildings.js')(app, passport); 
+require('./routes/users.js')(app, passport); 
 
 
 // catch 404 and forward to error handler
@@ -58,6 +59,15 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
+app.use(function(req, res, next) {
+  if (req.session.cookie.expires) {
+    console.log("esta logoneado");
+    next();
+  } else {
+    console.log("no esta logoneado");
+    res.redirect("/");
+  }
+});
 
 // development error handler
 // will print stacktrace

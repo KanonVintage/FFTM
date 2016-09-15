@@ -15,8 +15,9 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.1/angular-materialize.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+    <script type="text/javascript" src="javascripts/angular/laboratorist.js"></script>
 	</head>
-	<body>
+	<body ng-app="appLaboratorist">
 
 	<!-- Start Page Loading -->
     <div id="loader-wrapper">
@@ -57,14 +58,9 @@
     	</div>
 	</nav>
 	</main>
-
+  <div>
+    <ui-view></ui-view>
+  </div>
 	<% include ../basic/footer %>
-
-	<!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="javascripts/materialize.js"></script>
-    <script src="javascripts/init.js"></script>
-	<script type="text/javascript" src="javascripts/plugins.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     </body>
 </html>

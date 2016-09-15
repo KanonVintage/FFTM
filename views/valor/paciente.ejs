@@ -15,9 +15,10 @@
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.1/angular-materialize.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+        <script type="text/javascript" src="javascripts/angular/patient.js"></script>
     </head>
 
-<body >
+<body ng-app="appPatient">
     <!-- Start Page Loading -->
     <div id="loader-wrapper">
         <div id="loader"></div>        
@@ -59,7 +60,9 @@
             <a href="#" class="col s8 brand-logo white-text left">Salud Primero <img src="images/favicon.ico" style="height:17px"></a>
         </div>
     </nav>
-
+    <div>
+        <ui-view></ui-view>
+    </div>
     <!--start container-->
     <div>
 
@@ -667,13 +670,6 @@
     <!-- START FOOTER -->
     <% include ../basic/footer %>
     <!-- END FOOTER -->
-
-
-    <!-- ================================================
-    Scripts
-    ================================================ -->
-    
-    <% include ../basic/fscripts %>
 
     <!-- Toast Notification -->
     <script type="text/javascript">
