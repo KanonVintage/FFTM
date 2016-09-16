@@ -74,7 +74,6 @@ module.exports = function(app, passport) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/index', isLoggedIn, function(req, res) {
-        if (req.isAuthenticated()){
             if(req.user.type=="paciente"){
                 res.render('valor/paciente.ejs', {
                     user : req.user // get the user out of session and pass to template
@@ -83,14 +82,11 @@ module.exports = function(app, passport) {
                 res.render('valor/operario.ejs', {
                     user : req.user // get the user out of session and pass to template
                 });
-            }else{
+            }else if(req.user.type=="laboratorista"){
                 res.render('valor/laboratorista.ejs', {
                     user : req.user // get the user out of session and pass to template
                 });
-            }
-        }else{
-            return res.redirect('/');
-        }
+            }else return res.redirect('/');
     });
 
     // =====================================
@@ -109,4 +105,16 @@ function isLoggedIn(req, res, next) {
         return next();
     // if they aren't redirect them to the home page
     res.redirect('/');
+}
+
+
+function logout() {
+    alert("You are now logged out.")
+    //location.href = 'logout.php'
+}
+
+function resetTimer() {
+    clearTimeout(t);
+    t = setTimeout(logout, 1000);
+    // 1000 milisec = 1 sec
 }

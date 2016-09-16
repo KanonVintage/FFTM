@@ -37,9 +37,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // required for passport
 app.use(session({
   secret: 'T14g0',
-  resave: true,
+  resave: false,//true
   saveUninitialized: false,
-  cookie  : { maxAge  : (60 * 1000 * 5)}
+  //rolling: true,
+  //cookie  : { maxAge  : 60 * 1000 * 5}
 }));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
@@ -55,19 +56,11 @@ require('./routes/users.js')(app, passport);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
+  console.log(req.session);
   next(err);
 });
 
 // error handlers
-app.use(function(req, res, next) {
-  if (req.session.cookie.expires) {
-    console.log("esta logoneado");
-    next();
-  } else {
-    console.log("no esta logoneado");
-    res.redirect("/");
-  }
-});
 
 // development error handler
 // will print stacktrace
