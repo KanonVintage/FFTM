@@ -1,3 +1,5 @@
+// load up the result model
+var Sample   = require('../models/result');
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
 
@@ -14,7 +16,8 @@ var userSchema = new mongoose.Schema({
     local            : {
         email        : String,
         password     : String,
-    }
+    },
+    sample           :[{ type: mongoose.Schema.Types.ObjectId, ref: 'Sample' }]
 });
 
 // methods ======================

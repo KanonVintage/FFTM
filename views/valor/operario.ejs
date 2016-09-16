@@ -23,12 +23,12 @@
 	      				<li><a><i class="material-icons">person_pin</i><a  href="/profile" style="padding-top:15px">Profile</a></a></li>
 	                    <li><a href="#"><i class="material-icons">live_help</i><a style="padding-top:15px">Help</a></a></li>
 	                </ul>
-	                <a style="font-size:0.8em" class="btn-flat dropdown-button waves-effect waves-light white-text right" data-activates="profile-dropdown">Guido Duchi
+	                <a style="font-size:0.8em" class="btn-flat dropdown-button waves-effect waves-light white-text right" data-activates="profile-dropdown"><%= user.name %> <%= user.last %>
 	                <i class="material-icons right">settings</i></a>
 	                </div>
 	            <div class="col s12">
-					<a><span class="white-text name">guido.duchi@gmail.com</span></a>
-					<a><span class="white-text email">Operario</span></a>
+					<a><span class="white-text name"><%= user.local.email %></span></a>
+					<a><span class="white-text email"><%= user.type %></span></a>
 				</div>
 		    </div>
 	  	</li>
