@@ -18,10 +18,14 @@ var User = require('../models/user.js');
 
 	//PUT - Actualizar usuario
 	app.put('/users/:id', isLoggedIn, function(req, res){
-		if(req.user.type=="paciente"){
+		if(true){
 			User.findById(req.params.id, function(err, user){
-				user.name = req.body.nombre;
-				user.last = req.body.prioridad;
+				user.name 	 		= req.body.name;
+				user.last 	 		= req.body.last;
+				user.info.ci 		= req.body.ci;
+				user.info.address 	= req.body.address;
+				user.info.phone		= req.body.phone;
+				user.email			= req.body.email;
 
 				user.save(function(err){
 					if(err){res.send(err)}

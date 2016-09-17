@@ -64,7 +64,7 @@ module.exports = function(passport) {
                 // set the user's local credentials
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password);
-                newUser.type           = "paciente";
+                newUser.type           = req.body.type;
                 newUser.name           = req.body.name;
                 newUser.last           = req.body.last;
                 newUser.info.ci        = req.body.ci;
@@ -73,9 +73,10 @@ module.exports = function(passport) {
 
                 var transporter = nodemailer.createTransport('smtps://saludprimero1pm%40gmail.com:radwimps4@smtp.gmail.com');
                 
-                var mensaje  = "Ud ha sido agregado como paciente, su usuario es su correo y su clave temporal es: " + password;
+                var mensaje  = "Bienvenido "+req.body.name+" "+req.body.last
+                +",\nSea ha registrado en nuestro sistema!\n\tSu usuario es: "+email+"\n\tSu contraseña es: " + password;
                 var mailOptions = {
-                    from: "Admin <saludprimero.2016@gmail.com>",
+                    from: "Salud Primero S.A. <saludprimero.2016@gmail.com>",
                     to: email,
                     subject: "Bienvenida",
                     text: mensaje

@@ -55,8 +55,8 @@ module.exports = function(app, passport) {
     // =====================================
     // SIGNUP ==============================
     // =====================================
-    /*// show the signup form
-    app.get('/signup', function(req, res) {
+    // show the signup form
+    /*app.get('/signup', function(req, res) {
         // render the page and pass in any flash data if it exists
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });*/
@@ -105,16 +105,4 @@ function isLoggedIn(req, res, next) {
         return next();
     // if they aren't redirect them to the home page
     res.redirect('/');
-}
-
-
-function logout() {
-    alert("You are now logged out.")
-    //location.href = 'logout.php'
-}
-
-function resetTimer() {
-    clearTimeout(t);
-    t = setTimeout(logout, 1000);
-    // 1000 milisec = 1 sec
 }
