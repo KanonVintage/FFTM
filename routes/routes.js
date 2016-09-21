@@ -52,6 +52,11 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/building', function(req, res) {
+        // render the page and pass in any flash data if it exists
+        res.render('building.ejs', { message: req.flash('signupMessage') });
+    });
+
     // =====================================
     // SIGNUP ==============================
     // =====================================
