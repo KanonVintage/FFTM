@@ -12,7 +12,7 @@ var buildingSchema = new mongoose.Schema({
         weekday : String,
         weekend : String
     },
-    descripcion: String,
+    description: String,
 });
 
 // create the model for users and expose it to our app

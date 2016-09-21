@@ -28,26 +28,26 @@
 
     <!-- Side Nav -->
 	<ul id="slide-out" class="side-nav fixed">
-  	<li class="userView">
-	    <div class="row">
-      		<img class="background" src="images/user-bg.jpg" style="height:100%;width:100%">
-      		<div class="col s12">
-      			<a><img src="images/1.jpg" class="circle valign profile-image left"></a>
-      			<ul id="profile-dropdown" class="dropdown-content" style="padding-top:0px;margin-top:58px;margin-left:15px">
-      				<li><a href="#"><i class="material-icons">person_pin</i><a  href="/profile" style="padding-top:15px">Profile</a></a></li>
+  	<li class="userView" style="margin-right:-25px;margin-left:-15px">
+      <div class="row">
+          <img class="background" src="images/user-bg.jpg" style="height:100%;width:100%">
+          <div class="col s12">
+            <a><img src="images/1.jpg" class="circle left"></a>
+            <ul id="profile-dropdown" class="dropdown-content" style="padding-top:0px;margin-top:58px;margin-left:15px">
+              <li><a><i class="material-icons">person_pin</i><a  href="/profile" style="padding-top:15px">Profile</a></a></li>
                     <li><a href="#"><i class="material-icons">live_help</i><a style="padding-top:15px">Help</a></a></li>
                 </ul>
-                <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn right" data-activates="profile-dropdown">Guido Duchi
+                <a style="font-size:0.8em" class="btn-flat dropdown-button waves-effect waves-light white-text right" data-activates="profile-dropdown"><%= user.name %> <%= user.last %>
                 <i class="material-icons right">settings</i></a>
                 </div>
             <div class="col s12">
-				<a><span class="white-text name">guido.duchi@gmail.com</span></a>
-				<a><span class="white-text email">Laboratorista</span></a>
-			</div>
-	    </div>
-  	</li>
-	<li><a class="bold waves-effect" ui-sref="RegistrarPaciente"><i class="material-icons">input</i>Muestras Medicas</a></li>
-	<li><a class="waves-effect" href="/logout"><i class="material-icons">power_settings_new</i>Salir</a></li>
+        <a><span class="white-text name"><%= user.local.email %></span></a>
+        <a><span class="white-text email"><%= user.type %></span></a>
+      </div>
+      </div>
+    </li>
+  	<li><a class="bold waves-effect" ui-sref="RegistrarPaciente"><i class="material-icons">input</i>Muestras Medicas</a></li>
+  	<li><a class="waves-effect" href="/logout"><i class="material-icons">power_settings_new</i>Salir</a></li>
 	</ul>
 
 	<main>
