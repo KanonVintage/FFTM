@@ -17,26 +17,46 @@ var Exam = require('../models/exam.js');
 	        }
 	    });
 	});
+
+	app.get('/myid', isLoggedIn, function(req, res){ 
+	    User.findById(req.session.passport.user, function(err, user){
+	        if(err){
+	            return next(err);
+	        } else {
+	            res.json(user);    
+	        }
+	    });
+	});
+
 	//PUT - Actualizar usuario
 	app.put('/users/:id', isLoggedIn, function(req, res){
 		if(true){
 			User.findById(req.params.id, function(err, user){
+				console.log(req.body.password);
+				if(req.body.password!=undefined){
+				 	if (req.params.id == req.session.passport.user){
+						user.local.password			= user.generateHash(req.body.password);
+					}else{return;}
+				}
+				console.log("here")
 				user.name 	 		= req.body.name;
 				user.last 	 		= req.body.last;
 				user.info.ci 		= req.body.ci;
 				user.info.address 	= req.body.address;
 				user.info.phone		= req.body.phone;
-				user.email			= req.body.email;
+				user.local.email			= req.body.email;
 
 				user.save(function(err){
-					if(err){res.send(err)}
+					if(err){res.redirect('/')}
 					res.json(user);
 				})
+
 			})
 		}else{
             return res.redirect('/');
         }
 	})
+
 	//DELETE - Eliminar usuario
 	app.delete('/users/:id', isLoggedIn, function(req, res){
 		if(req.user.type=="operario"){
@@ -158,6 +178,7 @@ var Exam = require('../models/exam.js');
 			});
 			exam.save(function(err){
 				Sample.findById(req.body.id, function(err, sample){
+					sample.meta = "Completo";
 					sample.results.push(exam);
 					sample.save(function(err){
 						if(err){}
